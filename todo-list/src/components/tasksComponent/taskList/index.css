@@ -1,0 +1,34 @@
+.task-item {
+  display: flex;
+  line-height: 60px;
+  border-bottom: 1px solid #d9d9d9;
+  position: relative;
+}
+.comlete-status {
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid #d9d9d9;
+  border-radius: 50%;
+  margin: 12px 15px 0px 15px;
+}
+.comlete-status img {
+  position: absolute;
+  left: 21px;
+  top: 18px;
+  display: block;
+  /* display: none; */
+}
+.task-item-name {
+  margin: 0;
+  font-size: 24px;
+}
+.task-item-delete {
+  /* display: none; */
+  position: absolute;
+  right: 20px;
+  font-size: 35px;
+  color: #cc9a9a;
+  transition: color 0.2s ease-out;
+  font-weight: 500;
+  transform: rotate(45deg);
+}

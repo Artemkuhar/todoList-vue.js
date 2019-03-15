@@ -1,0 +1,31 @@
+.task-footer {
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
+.task-counter,
+.sorting-all,
+.sorting-active,
+.sorting-completed,
+.clear-completed-btn {
+  margin: 0px 0px 0px 30px;
+  padding: 3px 7px;
+  box-sizing: border-box;
+  height: 25px;
+  border: 1px solid white;
+}
+.task-counter {
+  margin-left: 20px;
+}
+.clear-completed-btn {
+  margin-left: 47px;
+}
+.sorting-all {
+  margin-left: 60px;
+}
+.sorting-all:hover,
+.sorting-active:hover,
+.sorting-completed:hover {
+  border: 1px solid #f5a4a4c7;
+  border-radius: 5px;
+}

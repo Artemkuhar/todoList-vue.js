@@ -1,0 +1,33 @@
+::placeholder {
+  opacity: 0.3;
+}
+.task-block {
+  background-color: white;
+  width: 600px;
+  margin: 0 auto;
+  -webkit-box-shadow: 0px 13px 93px -20px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 13px 93px -20px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 13px 93px -20px rgba(0, 0, 0, 0.75);
+}
+.create-task-value {
+  line-height: 50px;
+  width: 100%;
+  border: none;
+  padding: 16px 16px 16px 60px;
+  font-size: 24px;
+  box-sizing: border-box;
+}
+.create-task {
+  position: relative;
+  border-bottom: 1px solid #d9d9d9;
+}
+.create-task-value + label:before {
+  position: absolute;
+  top: 15px;
+  left: 0px;
+  content: "❯";
+  font-size: 22px;
+  color: #e6e6e6;
+  padding: 10px 27px 10px 27px;
+  transform: rotate(90deg);
+}
