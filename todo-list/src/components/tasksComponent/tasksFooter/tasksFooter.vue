@@ -1,11 +1,18 @@
 <template >
-  <div class="task-footer">
-    <p class="task-counter">1 item left</p>
-    <div class="sorting-all">All</div>
-    <div class="sorting-active">Active</div>
-    <div class="sorting-completed">Completed</div>
-    <p class="clear-completed-btn">Clear completed</p>
+  <div>
+    <div class="task-footer">
+      <p class="task-counter">{{todoListItems.length}} item left</p>
+      <div class="sorting-all">All</div>
+      <div class="sorting-active">Active</div>
+      <div class="sorting-completed">Completed</div>
+      <p class="clear-completed-btn">Clear completed</p>
+    </div>
+    <div class="footer-block-shadow">
+      <div class="footer-block-1"></div>
+      <div class="footer-block-2"></div>
+    </div>
   </div>
+
 </template>
 <script>
 import { mapState } from 'vuex';
@@ -15,7 +22,9 @@ export default {
     return {};
   },
   computed: {
-    ...mapState({}),
+    ...mapState({
+      todoListItems: state => state.state.todoListItems,
+    }),
   },
 };
 </script>

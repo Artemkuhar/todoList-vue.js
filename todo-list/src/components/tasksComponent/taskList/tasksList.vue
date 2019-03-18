@@ -1,15 +1,22 @@
 <template >
-  <div class="task-item">
-    <div class="comlete-status">
-      <img
-        src="../../../assets/done.png"
-        alt="ok"
-        width="21px"
-        height="21px"
-      >
+  <div>
+    <div
+      class="task-item"
+      v-for=" task of todoListItems"
+      :key="task.name"
+    >
+      <div class="comlete-status">
+        <img
+          src="../../../assets/done.png"
+          alt="ok"
+          width="21px"
+          height="21px"
+          v-if="task.todoStatus"
+        >
+      </div>
+      <p class="task-item-name">{{task.todoName}}</p>
+      <div class="task-item-delete">+</div>
     </div>
-    <p class="task-item-name">123</p>
-    <div class="task-item-delete">+</div>
   </div>
 </template>
 <script>
@@ -20,7 +27,9 @@ export default {
     return {};
   },
   computed: {
-    ...mapState({}),
+    ...mapState({
+      todoListItems: state => state.state.todoListItems,
+    }),
   },
 };
 </script>
