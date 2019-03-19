@@ -26,8 +26,10 @@ export default {
   text-align: center;
   color: #2c3e50;
   padding-top: 60px;
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   background-color: #eee;
+  padding-bottom: 100px;
 }
 
 h1,

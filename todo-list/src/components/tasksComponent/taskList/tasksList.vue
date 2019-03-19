@@ -2,10 +2,13 @@
   <div>
     <div
       class="task-item"
-      v-for=" task of todoListItems"
+      v-for=" (task, index) of todoListItems"
       :key="task.name"
     >
-      <div class="comlete-status">
+      <div
+        class="comlete-status"
+        @click="changeTaskStatus(task,index)"
+      >
         <img
           src="../../../assets/done.png"
           alt="ok"
@@ -14,13 +17,19 @@
           v-if="task.todoStatus"
         >
       </div>
-      <p class="task-item-name">{{task.todoName}}</p>
-      <div class="task-item-delete">+</div>
+      <p
+        class="task-item-name"
+        :class="{'task-item-name-inactive': task.todoStatus }"
+      >{{task.todoName}}</p>
+      <div
+        class="task-item-delete"
+        @click="deleteTask(index)"
+      >+</div>
     </div>
   </div>
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -29,7 +38,21 @@ export default {
   computed: {
     ...mapState({
       todoListItems: state => state.state.todoListItems,
+      selectListTasks: state => state.state.selectListTasks,
     }),
+  },
+  methods: {
+    ...mapActions(['removeTask', 'changeStatus']),
+    deleteTask(index) {
+      this.removeTask(index);
+    },
+    changeTaskStatus(task, index) {
+      let taskInfo = {
+        task: task,
+        index: index,
+      };
+      this.changeStatus(taskInfo);
+    },
   },
 };
 </script>

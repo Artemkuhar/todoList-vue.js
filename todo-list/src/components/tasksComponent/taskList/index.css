@@ -21,9 +21,14 @@
 .task-item-name {
   margin: 0;
   font-size: 24px;
+  color: #5e5e5e;
+}
+.task-item-name-inactive {
+  text-decoration: line-through;
+  color: #cccccc;
 }
 .task-item-delete {
-  /* display: none; */
+  display: none;
   position: absolute;
   right: 20px;
   font-size: 35px;
@@ -31,4 +36,8 @@
   transition: color 0.2s ease-out;
   font-weight: 500;
   transform: rotate(45deg);
+  cursor: pointer;
+}
+.task-item:hover .task-item-delete {
+  display: block;
 }

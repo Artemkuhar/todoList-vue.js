@@ -1,7 +1,7 @@
 <template >
   <div>
     <div class="task-footer">
-      <p class="task-counter">{{todoListItems.length}} item left</p>
+      <p class="task-counter">{{`${todoListItems.length} item${todoListItems.length > 1 ? 's' : ''}`}} left</p>
       <div class="sorting-all">All</div>
       <div class="sorting-active">Active</div>
       <div class="sorting-completed">Completed</div>

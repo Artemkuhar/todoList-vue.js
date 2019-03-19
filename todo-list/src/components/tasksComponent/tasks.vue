@@ -9,15 +9,18 @@
           placeholder="What need to be done?"
           @keyup="createNewTask()"
         >
-        <label for="create-task-value"></label>
+        <label
+          for="create-task-value"
+          v-if="todoListItems.length > 0"
+          @click="chooseAll()"
+        ></label>
       </div>
-      {{newTask}}
     </header>
     <section>
       <tasksList></tasksList>
     </section>
     <footer>
-      <taskFooter v-show="true"></taskFooter>
+      <taskFooter v-if="todoListItems.length > 0"></taskFooter>
     </footer>
   </div>
 </template>
@@ -37,18 +40,24 @@ export default {
     };
   },
   computed: {
-    ...mapState({}),
+    ...mapState({
+      todoListItems: state => state.state.todoListItems,
+    }),
   },
   methods: {
-    ...mapActions(['createTask']),
+    ...mapActions(['createTask', 'chooseAllTasks']),
     createNewTask() {
-      if (event.keyCode == 13) {
+      if (event.keyCode == 13 && this.newTask != '') {
         let task = {
           todoName: this.newTask,
           todoStatus: false,
         };
         this.createTask(task);
+        this.newTask = '';
       }
+    },
+    chooseAll() {
+      this.chooseAllTasks();
     },
   },
 };
