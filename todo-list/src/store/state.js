@@ -4,6 +4,8 @@ export default {
   state: {
     todoListItems: [],
     selectListTasks: [],
+    showTasks: [],
+    activeTasks: [],
   },
   mutations,
   actions

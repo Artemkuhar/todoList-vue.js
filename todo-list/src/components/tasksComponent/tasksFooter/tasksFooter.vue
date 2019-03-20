@@ -2,9 +2,18 @@
   <div>
     <div class="task-footer">
       <p class="task-counter">{{`${todoListItems.length} item${todoListItems.length > 1 ? 's' : ''}`}} left</p>
-      <div class="sorting-all">All</div>
-      <div class="sorting-active">Active</div>
-      <div class="sorting-completed">Completed</div>
+      <div
+        class="sorting-all"
+        @click="updateTasksList('all')"
+      >All</div>
+      <div
+        class="sorting-active"
+        @click="updateTasksList('active')"
+      >Active</div>
+      <div
+        class="sorting-completed"
+        @click="updateTasksList('completed')"
+      >Completed</div>
       <p class="clear-completed-btn">Clear completed</p>
     </div>
     <div class="footer-block-shadow">
@@ -15,7 +24,7 @@
 
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
@@ -25,6 +34,13 @@ export default {
     ...mapState({
       todoListItems: state => state.state.todoListItems,
     }),
+  },
+  methods: {
+    ...mapActions(['updateDisplayedTasks']),
+    updateTasksList(filterName) {
+      console.log(filterName);
+      this.updateDisplayedTasks(filterName);
+    },
   },
 };
 </script>

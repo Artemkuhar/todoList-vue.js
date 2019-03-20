@@ -2,16 +2,14 @@ import * as types from './mutations_types'
 
 export const createTask = ({ commit }, payload) => {
   try {
-    const task = payload
-    commit(types.CREATE_TASK, task)
+    commit(types.CREATE_TASK, payload)
   } catch (err) {
     console.log('error')
   }
 }
 export const removeTask = ({ commit }, payload) => {
   try {
-    const index = payload
-    commit(types.REMOVE_TASK, index)
+    commit(types.REMOVE_TASK, payload)
   } catch (err) {
     console.log('error')
   }
@@ -26,6 +24,20 @@ export const changeStatus = ({ commit }, payload) => {
 export const chooseAllTasks = ({ commit }) => {
   try {
     commit(types.CHOOSE_ALL_TASK)
+  } catch (err) {
+    console.log('error')
+  }
+}
+export const sendSelectTasks = ({ commit }, payload) => {
+  try {
+    commit(types.UPDATE_SELECT_TASK, payload)
+  } catch (err) {
+    console.log('error')
+  }
+}
+export const updateDisplayedTasks = ({ commit }, payload) => {
+  try {
+    commit(types.UPDATE_DISPAYED_TASKS, payload)
   } catch (err) {
     console.log('error')
   }

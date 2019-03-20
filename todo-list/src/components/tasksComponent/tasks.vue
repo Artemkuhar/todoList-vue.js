@@ -4,6 +4,7 @@
       <div class="create-task">
         <input
           class="create-task-value"
+          :class="{'change-label-color': labelColor}"
           type="text"
           v-model="newTask"
           placeholder="What need to be done?"
@@ -37,11 +38,21 @@ export default {
   data() {
     return {
       newTask: '',
+      labelColor: false,
     };
+  },
+  watch: {
+    selectListTasks() {
+      this.updateLabelColor();
+    },
+    todoListItems() {
+      this.updateLabelColor();
+    },
   },
   computed: {
     ...mapState({
       todoListItems: state => state.state.todoListItems,
+      selectListTasks: state => state.state.selectListTasks,
     }),
   },
   methods: {
@@ -58,6 +69,14 @@ export default {
     },
     chooseAll() {
       this.chooseAllTasks();
+      this.updateLabelColor();
+    },
+    updateLabelColor() {
+      if (this.selectListTasks.length === this.todoListItems.length) {
+        this.labelColor = true;
+      } else {
+        this.labelColor = false;
+      }
     },
   },
 };

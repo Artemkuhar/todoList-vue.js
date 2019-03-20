@@ -38,6 +38,9 @@ body {
   transform: rotate(90deg);
   cursor: pointer;
 }
+.change-label-color + label:before {
+  color: #616161;
+}
 .footer-block-shadow {
   display: flex;
   justify-content: center;
