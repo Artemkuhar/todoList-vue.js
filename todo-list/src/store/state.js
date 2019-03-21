@@ -3,9 +3,8 @@ import mutations from './mutations'
 export default {
   state: {
     todoListItems: [],
-    selectListTasks: [],
     showTasks: [],
-    activeTasks: [],
+    filterStatus: 'all',
   },
   mutations,
   actions

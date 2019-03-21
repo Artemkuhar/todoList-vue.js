@@ -42,21 +42,21 @@ export default {
     };
   },
   watch: {
-    selectListTasks() {
+    todoListItems() {
       this.updateLabelColor();
     },
-    todoListItems() {
+    showTasks() {
       this.updateLabelColor();
     },
   },
   computed: {
     ...mapState({
       todoListItems: state => state.state.todoListItems,
-      selectListTasks: state => state.state.selectListTasks,
+      showTasks: state => state.state.showTasks,
     }),
   },
   methods: {
-    ...mapActions(['createTask', 'chooseAllTasks']),
+    ...mapActions(['createTask', 'chooseAllTasks', 'updateDisplayedTasks']),
     createNewTask() {
       if (event.keyCode == 13 && this.newTask != '') {
         let task = {
@@ -70,13 +70,13 @@ export default {
     chooseAll() {
       this.chooseAllTasks();
       this.updateLabelColor();
+      this.updateDisplayedTasks();
     },
     updateLabelColor() {
-      if (this.selectListTasks.length === this.todoListItems.length) {
-        this.labelColor = true;
-      } else {
-        this.labelColor = false;
-      }
+      let checkArray = this.showTasks.filter(task => {
+        return task.todoStatus === false;
+      });
+      checkArray.length > 0 ? (this.labelColor = false) : (this.labelColor = true);
     },
   },
 };
