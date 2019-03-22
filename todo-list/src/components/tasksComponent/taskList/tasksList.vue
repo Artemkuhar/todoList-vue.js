@@ -2,7 +2,7 @@
   <div>
     <div
       class="task-item"
-      v-for=" (task, index) of tasks"
+      v-for=" task of showTasks"
       :key="task.name"
     >
       <label class="statusLable">
@@ -10,11 +10,10 @@
           id="taskStatus"
           type="checkbox"
           :value="task"
-          v-model="selectTasks"
         >
         <div
           class="comlete-status"
-          @click="changeTaskStatus(task,index)"
+          @click="changeTaskStatus(task)"
         >
           <img
             src="../../../assets/done.png"
@@ -31,7 +30,7 @@
       >{{task.todoName}}</p>
       <div
         class="task-item-delete"
-        @click="deleteTask(index,task)"
+        @click="deleteTask(task)"
       >+</div>
     </div>
   </div>
@@ -41,47 +40,27 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
-    return {
-      selectTasks: [],
-      tasks: [],
-    };
+    return {};
   },
   watch: {
-    selectTasks() {
-      this.sendSelectTasks(this.selectTasks);
-    },
-    selectListTasks() {
-      this.selectTasks = this.selectListTasks;
-    },
     todoListItems() {
-      this.tasks = this.todoListItems;
-    },
-    showTasks() {
-      this.tasks = this.showTasks;
+      this.updateDisplayedTasks();
     },
   },
   computed: {
     ...mapState({
       todoListItems: state => state.state.todoListItems,
-      selectListTasks: state => state.state.selectListTasks,
       showTasks: state => state.state.showTasks,
     }),
   },
   methods: {
-    ...mapActions(['removeTask', 'changeStatus', 'sendSelectTasks']),
-    deleteTask(index, task) {
-      let taskInfo = {
-        task: task,
-        index: index,
-      };
-      this.removeTask(taskInfo);
+    ...mapActions(['removeTask', 'changeStatus', 'updateDisplayedTasks']),
+    deleteTask(task) {
+      this.removeTask(task);
     },
-    changeTaskStatus(task, index) {
-      let taskInfo = {
-        task: task,
-        index: index,
-      };
-      this.changeStatus(taskInfo);
+    changeTaskStatus(task) {
+      this.changeStatus(task);
+      this.updateDisplayedTasks();
     },
   },
 };

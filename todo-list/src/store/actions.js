@@ -9,6 +9,7 @@ export const createTask = ({ commit }, payload) => {
 }
 export const removeTask = ({ commit }, payload) => {
   try {
+    console.log(payload)
     commit(types.REMOVE_TASK, payload)
   } catch (err) {
     console.log('error')
@@ -24,13 +25,6 @@ export const changeStatus = ({ commit }, payload) => {
 export const chooseAllTasks = ({ commit }) => {
   try {
     commit(types.CHOOSE_ALL_TASK)
-  } catch (err) {
-    console.log('error')
-  }
-}
-export const sendSelectTasks = ({ commit }, payload) => {
-  try {
-    commit(types.UPDATE_SELECT_TASK, payload)
   } catch (err) {
     console.log('error')
   }

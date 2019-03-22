@@ -14,7 +14,7 @@
         class="sorting-completed"
         @click="updateTasksList('completed')"
       >Completed</div>
-      <p class="clear-completed-btn">Clear completed</p>
+      <div class="clear-completed-btn">Clear completed</div>
     </div>
     <div class="footer-block-shadow">
       <div class="footer-block-1"></div>
@@ -38,7 +38,6 @@ export default {
   methods: {
     ...mapActions(['updateDisplayedTasks']),
     updateTasksList(filterName) {
-      console.log(filterName);
       this.updateDisplayedTasks(filterName);
     },
   },
