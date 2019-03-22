@@ -1,7 +1,16 @@
 import * as types from './mutations_types'
 export default {
   [types.CREATE_TASK](state, payload) {
-    state.todoListItems.push(payload)
+    const nameValidation = [];
+    state.todoListItems.forEach(task => {
+      if (task.todoName == payload.todoName) {
+        nameValidation.push(payload)
+        alert('This task is already in task list, please change task name ');
+      }
+    });
+    if (nameValidation.length == 0) {
+      state.todoListItems.push(payload)
+    }
   },
   [types.REMOVE_TASK](state, payload) {
     state.todoListItems.forEach((task, index) => {

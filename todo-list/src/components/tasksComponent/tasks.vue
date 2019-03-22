@@ -59,11 +59,11 @@ export default {
     ...mapActions(['createTask', 'chooseAllTasks', 'updateDisplayedTasks']),
     createNewTask() {
       if (event.keyCode == 13 && this.newTask != '') {
-        let task = {
+        let addtask = {
           todoName: this.newTask,
           todoStatus: false,
         };
-        this.createTask(task);
+        this.createTask(addtask);
         this.newTask = '';
       }
     },
