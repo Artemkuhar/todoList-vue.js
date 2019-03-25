@@ -9,21 +9,23 @@
   height: 30px;
   border: 1.5px solid #d9d9d9;
   border-radius: 50%;
-  margin: 12px 15px 0px 15px;
 }
 .comlete-status img {
   position: absolute;
   left: 21px;
-  top: 18px;
-  display: block;
-  /* display: none; */
+  top: 21px;
 }
 .task-item-name {
   margin: 0;
   font-size: 24px;
+  color: #5e5e5e;
+}
+.task-item-name-inactive {
+  text-decoration: line-through;
+  color: #cccccc;
 }
 .task-item-delete {
-  /* display: none; */
+  display: none;
   position: absolute;
   right: 20px;
   font-size: 35px;
@@ -31,4 +33,16 @@
   transition: color 0.2s ease-out;
   font-weight: 500;
   transform: rotate(45deg);
+  cursor: pointer;
+}
+.task-item:hover .task-item-delete {
+  display: block;
+}
+#taskStatus {
+  display: none;
+}
+.statusLable {
+  width: 32px;
+  height: 32px;
+  margin: 15px 15px 15px 15px;
 }

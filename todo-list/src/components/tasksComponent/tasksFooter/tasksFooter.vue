@@ -1,21 +1,82 @@
 <template >
-  <div class="task-footer">
-    <p class="task-counter">1 item left</p>
-    <div class="sorting-all">All</div>
-    <div class="sorting-active">Active</div>
-    <div class="sorting-completed">Completed</div>
-    <p class="clear-completed-btn">Clear completed</p>
+  <div>
+    <div class="task-footer">
+      <p class="task-counter">{{`${activeTasks.length} item${activeTasks.length > 1 ? 's' : ''}`}} left</p>
+      <div
+        class="sorting-all"
+        :class="{'sorting-focus-value': visibility == 'all' }"
+        @click="updateTasksList('all')"
+      >All</div>
+      <div
+        class="sorting-active"
+        :class="{'sorting-focus-value': visibility == 'active' }"
+        @click="updateTasksList('active')"
+      >Active</div>
+      <div
+        class="sorting-completed"
+        :class="{'sorting-focus-value': visibility == 'completed' }"
+        @click="updateTasksList('completed')"
+      >Completed</div>
+      <div
+        class="clear-completed-btn"
+        :class="{'clear-completed-active': completedTask }"
+        @click="deleteCompletedTasks()"
+      >Clear completed</div>
+    </div>
+    <div class="footer-block-shadow">
+      <div class="footer-block-1"></div>
+      <div class="footer-block-2"></div>
+    </div>
   </div>
+
 </template>
 <script>
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   data() {
-    return {};
+    return {
+      activeTasks: [],
+      visibility: 'all',
+      completedTask: true,
+    };
+  },
+  watch: {
+    todoListItems() {
+      this.leftItems();
+      this.chekCompletedTask();
+    },
+    showTasks() {
+      this.leftItems();
+      this.chekCompletedTask();
+    },
   },
   computed: {
-    ...mapState({}),
+    ...mapState({
+      todoListItems: state => state.state.todoListItems,
+      showTasks: state => state.state.showTasks,
+    }),
+  },
+  methods: {
+    ...mapActions(['updateDisplayedTasks', 'deleteCompleted']),
+    updateTasksList(filterName) {
+      this.updateDisplayedTasks(filterName);
+      this.visibility = filterName;
+    },
+    leftItems() {
+      this.activeTasks = this.todoListItems.filter(task => {
+        if (task.todoStatus === false) return task;
+      });
+    },
+    chekCompletedTask() {
+      this.todoListItems.forEach(task => {
+        if (task.todoStatus === true) this.completedTask = false;
+      });
+    },
+    deleteCompletedTasks() {
+      this.deleteCompleted();
+      this.completedTask = true;
+    },
   },
 };
 </script>
