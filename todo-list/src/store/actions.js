@@ -36,3 +36,10 @@ export const updateDisplayedTasks = ({ commit }, payload) => {
     console.log('error')
   }
 }
+export const deleteCompleted = ({ commit }) => {
+  try {
+    commit(types.DELETE_COMPLETED_TASK)
+  } catch (err) {
+    console.log('error')
+  }
+}

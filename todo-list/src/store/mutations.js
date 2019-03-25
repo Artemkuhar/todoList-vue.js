@@ -62,4 +62,9 @@ export default {
       });
     }
   },
+  [types.DELETE_COMPLETED_TASK](state) {
+    state.todoListItems = state.todoListItems.filter((task) => {
+      if (task.todoStatus === false) return task
+    });
+  },
 }

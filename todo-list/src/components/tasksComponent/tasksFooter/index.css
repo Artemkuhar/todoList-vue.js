@@ -20,6 +20,10 @@
 .clear-completed-btn {
   margin-left: 47px;
 }
+.clear-completed-btn:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
 .sorting-all {
   margin-left: 60px;
 }
@@ -28,4 +32,12 @@
 .sorting-completed:hover {
   border: 1px solid #f5a4a4c7;
   border-radius: 5px;
+  cursor: pointer;
+}
+.sorting-focus-value {
+  border: 1px solid #fc7979c7;
+  border-radius: 5px;
+}
+.clear-completed-active {
+  display: none;
 }
