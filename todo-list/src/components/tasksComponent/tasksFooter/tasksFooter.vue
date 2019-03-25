@@ -19,7 +19,7 @@
       >Completed</div>
       <div
         class="clear-completed-btn"
-        :class="{'clear-completed-active': completedTask.length > 0 }"
+        :class="{'clear-completed-active': completedTask }"
         @click="deleteCompletedTasks()"
       >Clear completed</div>
     </div>
@@ -38,7 +38,7 @@ export default {
     return {
       activeTasks: [],
       visibility: 'all',
-      completedTask: [],
+      completedTask: true,
     };
   },
   watch: {
@@ -69,13 +69,13 @@ export default {
       });
     },
     chekCompletedTask() {
-      this.completedTask = this.todoListItems.filter(task => {
-        if (task.todoStatus === true) return task;
+      this.todoListItems.forEach(task => {
+        if (task.todoStatus === true) this.completedTask = false;
       });
-      console.log(this.completedTask);
     },
     deleteCompletedTasks() {
       this.deleteCompleted();
+      this.completedTask = true;
     },
   },
 };

@@ -9,7 +9,6 @@ export const createTask = ({ commit }, payload) => {
 }
 export const removeTask = ({ commit }, payload) => {
   try {
-    console.log(payload)
     commit(types.REMOVE_TASK, payload)
   } catch (err) {
     console.log('error')
